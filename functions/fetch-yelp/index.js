@@ -4,7 +4,6 @@ require('dotenv').config({ path: `.env.development.local` });
 const handler = async (event) => {
   const zip = event.queryStringParameters.zip;
   const search = event.queryStringParameters.search;
-  console.log('search from function', search);
   // add code here to fetch data from yelp API
   // be sure to include the parameters from event.queryStringParameters
   try {
@@ -22,6 +21,7 @@ const handler = async (event) => {
       body: JSON.stringify(data.businesses),
     };
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     return {
       statusCode: 500,
