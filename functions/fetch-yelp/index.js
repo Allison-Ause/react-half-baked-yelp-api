@@ -3,12 +3,13 @@ require('dotenv').config({ path: `.env.development.local` });
 
 const handler = async (event) => {
   const zip = event.queryStringParameters.zip;
-  console.log('zip from function', zip);
+  const search = event.queryStringParameters.search;
+  console.log('search from function', search);
   // add code here to fetch data from yelp API
   // be sure to include the parameters from event.queryStringParameters
   try {
     const resp = await fetch(
-      `https://api.yelp.com/v3/businesses/search?categories=restaurants&location=${zip}`,
+      `https://api.yelp.com/v3/businesses/search?categories=restaurants&location=${zip}&term=${search}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`,
